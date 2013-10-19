@@ -28,22 +28,25 @@ function launchGame()
 {
 	stage = new createjs.Stage(document.getElementById("gameCanvas"));
 	objPlayer = new createjs.Bitmap(imgPlayer);
+	objPlayer.regX = 64;
+	objPlayer.x = 64;
+
 	stage.addChild(objPlayer);
 
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.addEventListener("tick", update);
 }
 
-var moveIncrement = 3;
+var moveIncrement = 4;
 
 function update()
 {
 	objPlayer.x += moveIncrement;
-	if(objPlayer.x > 800 - 128)
+	if(objPlayer.x > 800 - 64 || objPlayer.x < 64)
 	{
 		moveIncrement = -(moveIncrement*1.2);
 		objPlayer.y += 64;
-		objPlayer.scaleX = -objPlayer.scaleY;
+		objPlayer.scaleX = -objPlayer.scaleX;
 	}
 	stage.update();
 }
