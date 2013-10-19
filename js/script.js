@@ -1,16 +1,17 @@
 var preloadCount = 0;
-var preloadTotal = 3;
+var preloadTotal = 4;
 
-var imgPlayer = new Image();
 var objPlayer;
 
+var imgPlayer = new Image();
 var imgBg = new Image();
 var imgBullet = new Image();
+var imgEnemy = new Image();
 
 var stage;
 
 var bullets = new Array();
-var nbBullets = 0;
+var enemies = new Array();
 
 function startGame()
 {
@@ -27,6 +28,9 @@ function preloadAssets()
 
 	imgBullet.onload = preloadUpdate();
 	imgBullet.src = "media/Bullet.png";
+
+	imgEnemy.onload = preloadUpdate();
+	imgEnemy.src = "media/ovni.png";
 }
 
 function preloadUpdate()
@@ -50,27 +54,46 @@ function launchGame()
 	objPlayer.y = 300;
 	stage.addChild(objPlayer);
 
+	spawnEnemy();
+
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.addEventListener("tick", update);
 	stage.addEventListener("click", fire);
 }
 
-var speed = 4
+var enemyCountdown = 30;
 
 function update()
 {
-	objPlayer.y = Math.min(Math.max(stage.mouseY, 32), 600-32);
+	//mouve player
+	objPlayer.y = Math.min(Math.max(stage.mouseY, 32), stage.canvas.height-32);
 
-	for(i = 0; i < nbBullets; i++)
+	//move bullets forward
+	for(i = 0; i < bullets.length; i++)
 	{
 		bullets[i].x += 6;
-		if(bullets[i].x > 800)
+		if(bullets[i].x > stage.canvas.width)
 		{
 			stage.removeChild(bullets[i]);
 			bullets.shift(); //remove first element
-			nbBullets--;
 			i--;
 		}
+	}
+
+	//spawn enemies
+	if(enemyCountdown > 0)
+		enemyCountdown--;
+	else
+	{
+		spawnEnemy();
+		enemyCountdown = 30;
+	}
+
+	//move enemies
+	for(i = 0; i < enemies.length; i++)
+	{
+		enemies[i].x--;
+		enemies[i].y += Math.sin(enemies[i].x*0.08)*5;
 	}
 
 	stage.update();
@@ -78,9 +101,18 @@ function update()
 
 function fire()
 {
+	var nbBullets = bullets.length;
 	bullets[nbBullets] = new createjs.Bitmap(imgBullet);
 	bullets[nbBullets].x = objPlayer.x;
 	bullets[nbBullets].y = objPlayer.y;
 	stage.addChild(bullets[nbBullets]);
-	nbBullets++;
+}
+
+function spawnEnemy()
+{
+	var enemy = new createjs.Bitmap(imgEnemy); //130x122
+	enemy.x = stage.canvas.width - 130;
+	enemy.y = (Math.random())*400;
+	stage.addChild(enemy);
+	enemies[enemies.length] = enemy;
 }
