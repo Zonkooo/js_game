@@ -11,18 +11,20 @@ function Player(initX, initY, bitmap)
 
 	this.verticalVelocity = 0;
 
-	this.Update = function()
+	this.Update = function (event)
 	{
+		var deltaT = event.delta/30; //usually approximately 1
+
 		if(this.internal.y == 360 && isKeyPressed[38])
 			this.verticalVelocity = -this.jumpingPower;
-		this.internal.y += this.verticalVelocity;
+		this.internal.y += this.verticalVelocity*deltaT;
 
 		var move = 0
 		if(isKeyPressed[37])
 			move += -this.speed;
 		if(isKeyPressed[39])
 			move += this.speed;
-		this.internal.x += move;
+		this.internal.x += move*deltaT;
 
 		//handle collision with the ground
 		if(this.internal.y >= 360 && this.verticalVelocity >= 0)
@@ -32,6 +34,6 @@ function Player(initX, initY, bitmap)
 		}
 
 		if(this.internal.y != 360) //apply gravity only if airborne
-			this.verticalVelocity += 1;
+			this.verticalVelocity += gravity*deltaT;
 	}
 }

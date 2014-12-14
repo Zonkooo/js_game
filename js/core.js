@@ -10,6 +10,8 @@ var imgBg = new Image();
 
 var stage;
 
+var gravity = 1;
+
 function startGame()
 {
 	preloadAssets();
@@ -62,9 +64,9 @@ function code(e)
 	return(e.keyCode || e.which);
 }
 
-function update()
+function update(event)
 {
-	objPlayer.Update();
+	objPlayer.Update(event);
 
 	stage.update();
 }
