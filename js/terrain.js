@@ -38,6 +38,12 @@ function Terrain(stage, texX)
 					stage.addChild(block);
 					this.childs.push(block);
 				}
+				//add invisible blocks on each side to prevent character from falling
+				var wallLeft = {}, wallRight = {};
+				wallLeft.boundingBox = new createjs.Rectangle(-40, c*40, 40, 40);
+				wallRight.boundingBox = new createjs.Rectangle(30*40, c*40, 40, 40);
+				this.childs.push(wallLeft);
+				this.childs.push(wallRight);
 			}
 		}
 	}
