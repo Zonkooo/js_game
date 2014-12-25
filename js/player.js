@@ -37,7 +37,7 @@ function Player(initX, initY, bitmap)
 		var rect = new createjs.Rectangle(this.internal.x, this.internal.y, 20, 40);
 		//try to move only on x
 		rect.x += wantedX;
-		if(objTerrain.ValidateMove(rect))
+		if(wantedX == 0 || objTerrain.ValidateMove(rect))
 			this.internal.x += wantedX;
 		else
 			rect.x -= wantedX;
