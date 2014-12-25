@@ -4,9 +4,11 @@ var preloadCount = 0;
 var preloadTotal = 2;
 
 var objPlayer;
+var objTerrain;
 
 var imgPlayer = new Image();
 var imgBg = new Image();
+var imgBlock = new Image();
 
 var stage;
 
@@ -24,6 +26,9 @@ function preloadAssets()
 
 	imgBg.onload = preloadUpdate();
 	imgBg.src = "media/bg.jpg";
+
+	imgBlock.onload = preloadUpdate();
+	imgBlock.src = "media/block.png";
 }
 
 function preloadUpdate()
@@ -39,6 +44,9 @@ function launchGame()
 
 	var objBg = new createjs.Bitmap(imgBg);
 	stage.addChild(objBg);
+
+	objTerrain = new Terrain(stage, imgBlock);
+	objTerrain.Load();
 
 	objPlayer = new Player(50, -40, new createjs.Bitmap(imgPlayer));
 	stage.addChild(objPlayer.internal);
