@@ -2,7 +2,7 @@ function Player(initX, initY, bitmap)
 {
 	var self = this; //to use in events
 
-	this.speed = 8;
+	this.speed = 6;
 	this.jumpingPower = 15;
 
 	this.internal = bitmap;
@@ -22,6 +22,7 @@ function Player(initX, initY, bitmap)
 
 		if(this.onGround && isKeyPressed[38])
 		{
+			this.onGround = false;
 			this.verticalVelocity = -this.jumpingPower;
 		}
 
@@ -34,21 +35,12 @@ function Player(initX, initY, bitmap)
 			move += this.speed;
 		wantedX += move*deltaT;
 
-		var rect = new createjs.Rectangle(this.internal.x, this.internal.y, 20, 40);
-		//try to move only on x
-		rect.x += wantedX;
-		if(wantedX == 0 || objTerrain.ValidateMove(rect))
-			this.internal.x += wantedX;
-		else
-			rect.x -= wantedX;
-		//try to move on y
-		rect.y += wantedY;
-		if(objTerrain.ValidateMove(rect))
-		{
-			this.internal.y += wantedY;
-			this.onGround = false;
-		}
-		else
+		var rect = new createjs.Rectangle(this.internal.x, this.internal.y, 20, 39);
+		var move = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstacles);
+		this.internal.x += move.x;
+		this.internal.y += move.y;
+
+		if(Math.abs(move.y) <= EPSILON)
 		{
 			if(this.verticalVelocity > 0)
 				this.onGround = true;
