@@ -7,10 +7,13 @@ GetValidMove = function(bb, direction, obstacles)
 	for(b in obstacles)
 	{
 		var block = obstacles[b];
-		if(intersects(bb, block))
+		var inter = intersection(bb, block);
+		if(inter)
 		{
-			bb.x -= direction.x;
-			direction.x = 0;
+			moveback = inter.width + EPSILON;
+			if(direction.x < 0) moveback = -moveback;
+			direction.x -= moveback;
+			bb.x -= moveback;
 			break;
 		}
 	}
