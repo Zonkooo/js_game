@@ -35,7 +35,7 @@ function Player(initX, initY, bitmap)
 			move += this.speed;
 		wantedX += move*deltaT;
 
-		var rect = new createjs.Rectangle(this.internal.x, this.internal.y, 20, 39);
+		var rect = new createjs.Rectangle(this.internal.x+8, this.internal.y, 40, 53);
 		var move = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstacles);
 		this.internal.x += move.x;
 		this.internal.y += move.y;
