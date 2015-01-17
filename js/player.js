@@ -30,9 +30,17 @@ function Player(initX, initY, bitmap)
 
 		var move = 0
 		if(isKeyPressed[37])
+		{
 			move += -this.speed;
+			this.internal.scaleX = -Math.abs(this.internal.scaleX);
+			this.internal.regX = this.internal.width;
+		}
 		if(isKeyPressed[39])
+		{
 			move += this.speed;
+			this.internal.scaleX = Math.abs(this.internal.scaleX);
+			this.internal.regX = 0;
+		}
 		wantedX += move*deltaT;
 
 		var rect = new createjs.Rectangle(this.internal.x+8, this.internal.y, 40, 53);

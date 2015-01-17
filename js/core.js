@@ -49,15 +49,15 @@ function launchGame()
 	objTerrain.Load();
 
 	var spSheet = new createjs.SpriteSheet({
-			framerate: 30,
 			"images": [imgPlayer],
 			"frames": {"height": 120, "count": 8, "width": 108},
 			"animations": { "run": [0, 7, "run", 0.4] }
 		});
 	var sprite = new createjs.Sprite(spSheet, "run");
+	sprite.width = 108;
 	sprite.scaleX = 0.5;
 	sprite.scaleY = 0.5;
-	objPlayer = new Player(50, -40, sprite);
+	objPlayer = new Player(50, 300, sprite);
 	stage.addChild(objPlayer.internal);
 
 	createjs.Ticker.setFPS(30);
