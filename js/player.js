@@ -33,13 +33,11 @@ function Player(initX, initY, bitmap)
 		{
 			move += -this.speed;
 			this.internal.scaleX = -Math.abs(this.internal.scaleX);
-			this.internal.regX = this.internal.width;
 		}
 		if(isKeyPressed[39])
 		{
 			move += this.speed;
 			this.internal.scaleX = Math.abs(this.internal.scaleX);
-			this.internal.regX = 0;
 		}
 		wantedX += move*deltaT;
 

@@ -49,14 +49,11 @@ function launchGame()
 	objTerrain.Load();
 
 	var spSheet = new createjs.SpriteSheet({
-			"images": [imgPlayer],
-			"frames": {"height": 120, "count": 8, "width": 108},
+			images: [imgPlayer],
 			"animations": { "run": [0, 7, "run", 0.4] }
+			frames: {height: 60, width: 54, regX: 27},
 		});
 	var sprite = new createjs.Sprite(spSheet, "run");
-	sprite.width = 108;
-	sprite.scaleX = 0.5;
-	sprite.scaleY = 0.5;
 	objPlayer = new Player(50, 300, sprite);
 	stage.addChild(objPlayer.internal);
 
