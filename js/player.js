@@ -2,6 +2,8 @@ function Player(initX, initY, bitmap)
 {
 	var self = this; //to use in events
 
+	this.state = "still";
+
 	this.speed = 6;
 	this.jumpingPower = 15;
 
@@ -24,7 +26,6 @@ function Player(initX, initY, bitmap)
 		{
 			this.onGround = false;
 			this.verticalVelocity = -this.jumpingPower;
-			this.internal.gotoAndPlay("jump");
 		}
 
 		wantedY += this.verticalVelocity*deltaT;
@@ -47,13 +48,25 @@ function Player(initX, initY, bitmap)
 		this.internal.x += move.x;
 		this.internal.y += move.y;
 
-		if(Math.abs(move.y) <= EPSILON)
+		//update state
+		var prevState = this.state;
+		if(Math.abs(move.y) > EPSILON)
+			this.state = "jump";
+		else if(Math.abs(move.x) > EPSILON)
+			this.state = "run";
+		else
+			this.state = "still";
+		this.internal.regY = this.state == "still" ? 5 : 0; //oh boy
+		if(this.state != prevState)
+			this.internal.gotoAndPlay(this.state);
+
+		if(Math.abs(move.y) < Math.abs(wantedY))
 		{
 			if(this.verticalVelocity > 0 && !this.onGround)
 			{
-				this.internal.gotoAndPlay("run");
 				this.onGround = true;
 			}
+			//else we just hit a ceiling
 			this.verticalVelocity = 0;
 		}
 	}
