@@ -24,6 +24,7 @@ function Player(initX, initY, bitmap)
 		{
 			this.onGround = false;
 			this.verticalVelocity = -this.jumpingPower;
+			this.internal.gotoAndPlay("jump");
 		}
 
 		wantedY += this.verticalVelocity*deltaT;
@@ -48,8 +49,11 @@ function Player(initX, initY, bitmap)
 
 		if(Math.abs(move.y) <= EPSILON)
 		{
-			if(this.verticalVelocity > 0)
+			if(this.verticalVelocity > 0 && !this.onGround)
+			{
+				this.internal.gotoAndPlay("run");
 				this.onGround = true;
+			}
 			this.verticalVelocity = 0;
 		}
 	}

@@ -50,8 +50,11 @@ function launchGame()
 
 	var spSheet = new createjs.SpriteSheet({
 			images: [imgPlayer],
-			"animations": { "run": [0, 7, "run", 0.4] }
 			frames: {height: 60, width: 54, regX: 27},
+			animations: {
+				run: [0, 7, "run", 0.4] ,
+				jump: [8, 12, "jump", 0.4]
+			}
 		});
 	var sprite = new createjs.Sprite(spSheet, "run");
 	objPlayer = new Player(50, 300, sprite);
