@@ -25,7 +25,7 @@ function preloadAssets()
 	imgPlayer.src = "media/player_anim.png";
 
 	imgBg.onload = preloadUpdate();
-	imgBg.src = "media/bg.jpg";
+	imgBg.src = "media/bg.png";
 
 	imgBlock.onload = preloadUpdate();
 	imgBlock.src = "media/block.png";
