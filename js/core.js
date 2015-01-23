@@ -58,7 +58,7 @@ function launchGame()
 			}
 		});
 	var sprite = new createjs.Sprite(spSheet, "run");
-	objPlayer = new Player(50, 300, sprite);
+	objPlayer = new Player(50, -60, sprite);
 	stage.addChild(objPlayer.internal);
 
 	createjs.Ticker.setFPS(30);
