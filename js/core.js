@@ -1,7 +1,9 @@
+debug = true;
+
 var isKeyPressed = [];
 
 var preloadCount = 0;
-var preloadTotal = 4;
+var preloadTotal = 5;
 
 var objPlayer;
 var objTerrain;
@@ -9,6 +11,7 @@ var objTerrain;
 var imgPlayer = new Image();
 var imgBg = new Image();
 var imgBlock = new Image();
+var imgDebug = new Image();
 
 var stage;
 
@@ -36,6 +39,9 @@ function preloadAssets()
 
 	imgBlock.onload = preloadUpdate();
 	imgBlock.src = "media/block.png";
+
+	imgDebug.onload = preloadUpdate();
+	imgDebug.src = "media/debug.png";
 
 	createjs.Sound.addEventListener("fileload", preloadUpdate);
 	createjs.Sound.registerSound("media/receive.wav", "jump", 4);
