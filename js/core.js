@@ -1,7 +1,7 @@
 var isKeyPressed = [];
 
 var preloadCount = 0;
-var preloadTotal = 2;
+var preloadTotal = 4;
 
 var objPlayer;
 var objTerrain;
@@ -36,6 +36,9 @@ function preloadAssets()
 
 	imgBlock.onload = preloadUpdate();
 	imgBlock.src = "media/block.png";
+
+	createjs.Sound.addEventListener("fileload", preloadUpdate);
+	createjs.Sound.registerSound("media/receive.wav", "jump", 4);
 }
 
 function preloadUpdate()

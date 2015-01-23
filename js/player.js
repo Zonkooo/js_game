@@ -26,6 +26,7 @@ function Player(initX, initY, bitmap)
 		{
 			this.onGround = false;
 			this.verticalVelocity = -this.jumpingPower;
+			createjs.Sound.play("jump");
 		}
 
 		wantedY += this.verticalVelocity*deltaT;
