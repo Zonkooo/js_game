@@ -16,6 +16,13 @@ var gravity = 1;
 
 function startGame()
 {
+	stage = new createjs.Stage(document.getElementById("gameCanvas"));
+	var text = new createjs.Text("Loading...");
+	text.x = 600; text.y = 300;
+	text.textAlign = "center"; text.textBaseline = "middle";
+	stage.addChild(text);
+	stage.update();
+
 	preloadAssets();
 }
 
@@ -40,7 +47,7 @@ function preloadUpdate()
 
 function launchGame()
 {
-	stage = new createjs.Stage(document.getElementById("gameCanvas"));
+	stage.removeChildAt(0); //loading text
 
 	var objBg = new createjs.Bitmap(imgBg);
 	stage.addChild(objBg);
