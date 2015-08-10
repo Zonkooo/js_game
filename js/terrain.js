@@ -17,10 +17,13 @@ function Terrain(stage, texX)
 	"........XXXXXX......XXX............X......................XX",
 	"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 	];
+	levelWidth = level[0].length * 40;
+	screenWidth = 1200;
 
 	this.texX = texX;
 	this.obstaclesBBs = [];
 	this.obstaclesSprites = [];
+	this.offsetX = 0;
 
 	this.Load = function()
 	{
@@ -48,14 +51,20 @@ function Terrain(stage, texX)
 
 	this.TryMove = function(x)
 	{
+		remaining = 0;
+		if(levelWidth - screenWidth < this.offsetX + x)
+		{
+			remaining = x;
+			x = levelWidth - screenWidth - this.offsetX;
+			remaining -= x;
+		}
+		
 		for(o in this.obstaclesBBs)
-		{
 			this.obstaclesBBs[o].x -= x;
-		}
 		for(o in this.obstaclesSprites)
-		{
 			this.obstaclesSprites[o].x -= x;
-		}
-		return 0;
+		this.offsetX += x;
+		
+		return remaining;
 	}
 }
