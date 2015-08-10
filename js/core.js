@@ -82,13 +82,13 @@ function launchGame()
 
 	//manage keyboard state
 	document.onkeydown = function(e){
-	    var key = code(e);
-	    isKeyPressed[key] = true;
+		var key = code(e);
+		isKeyPressed[key] = true;
 //		alert(key);
 	};
 	document.onkeyup = function(e){
-	    var key = code(e);
-	    isKeyPressed[key] = false;
+		var key = code(e);
+		isKeyPressed[key] = false;
 	};
 }
 

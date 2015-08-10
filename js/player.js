@@ -37,7 +37,7 @@ function Player(initX, initY, bitmap)
 
 		wantedY += this.verticalVelocity*deltaT;
 
-		var move = 0
+		var move = 0;
 		if(isKeyPressed[37])
 		{
 			move += -this.speed;
@@ -61,8 +61,16 @@ function Player(initX, initY, bitmap)
 			this.debugBB.scaleY = rect.height;
 		}
 
-		var move = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstacles);
-		this.internal.x += move.x;
+		var move = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
+		if(this.internal.x + move.x > 800)
+		{
+			//move terrain instead of player
+			var remaining = objTerrain.TryMove(move.x);
+		}
+		else
+		{
+			this.internal.x += move.x;
+		}
 		this.internal.y += move.y;
 
 		//update state
