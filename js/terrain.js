@@ -52,11 +52,16 @@ function Terrain(stage, texX)
 	this.TryMove = function(x)
 	{
 		remaining = 0;
-		if(levelWidth - screenWidth < this.offsetX + x)
+		if(x > 0 && levelWidth - screenWidth < this.offsetX + x)
 		{
 			remaining = x;
 			x = levelWidth - screenWidth - this.offsetX;
 			remaining -= x;
+		}
+		else if(x < 0 && this.offsetX + x < 0)
+		{
+			remaining = x + this.offsetX;
+			x = -this.offsetX;
 		}
 		
 		for(o in this.obstaclesBBs)

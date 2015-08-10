@@ -62,7 +62,7 @@ function Player(initX, initY, bitmap)
 		}
 
 		var move = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
-		if(move.x > 0 && this.internal.x + move.x > 800)
+		if((move.x > 0 && this.internal.x + move.x > 800) || (move.x < 0 && this.internal.x + move.x < 400))
 		{
 			//move terrain instead of player
 			var remaining = objTerrain.TryMove(move.x);
