@@ -42,10 +42,10 @@ function Terrain(stage, texX)
 					this.obstaclesSprites.push(block);
 					this.obstaclesBBs.push(new createjs.Rectangle(block.x, block.y, 40, 40));
 				}
-				//add invisible blocks on each side to prevent character from falling
-				this.obstaclesBBs.push(new createjs.Rectangle(-40, c*40, 40, 40));
-				this.obstaclesBBs.push(new createjs.Rectangle(line.length*40, c*40, 40, 40));
 			}
+			//add invisible blocks on each side to prevent character from falling
+			this.obstaclesBBs.push(new createjs.Rectangle(-40, l*40, 40, 40));
+			this.obstaclesBBs.push(new createjs.Rectangle(line.length*40, l*40, 40, 40));
 		}
 	}
 
