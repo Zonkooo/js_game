@@ -6,7 +6,7 @@ function GetValidMove(bb, direction, obstacles)
 	bb.width += Math.abs(direction.x);
 	if(direction.x < 0)
 		bb.x += direction.x;
-	for(b in obstacles)
+	for(var b = 0; b < obstacles.length; b++)
 	{
 		var block = obstacles[b];
 		var inter = bb.intersection(block);
@@ -23,7 +23,7 @@ function GetValidMove(bb, direction, obstacles)
 	bb.height += Math.abs(direction.y);
 	if(direction.y < 0)
 		bb.y += direction.y;
-	for(var b in obstacles)
+	for(var b = 0; b < obstacles.length; b++)
 	{
 		block = obstacles[b];
 		inter = bb.intersection(block);

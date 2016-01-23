@@ -27,10 +27,10 @@ function Terrain(stage, texX)
 
 	this.Load = function()
 	{
-		for(var l in level)
+		for(var l = 0; l < level.length; l++)
 		{
 			var line = level[l];
-			for(var c in line)
+			for(var c = 0; c < line.length; c++)
 			{
 				var char = line[c];
 				if(char == "X")
@@ -64,9 +64,9 @@ function Terrain(stage, texX)
 			x = -this.offsetX;
 		}
 		
-		for(var o in this.obstaclesBBs)
+		for(var o = 0; o < this.obstaclesBBs.length; o++)
 			this.obstaclesBBs[o].x -= x;
-		for(var o in this.obstaclesSprites)
+		for(var o = 0; o < this.obstaclesSprites.length; o++)
 			this.obstaclesSprites[o].x -= x;
 		this.offsetX += x;
 		
