@@ -1,6 +1,6 @@
 function Terrain(stage, texX)
 {
-	level = [
+	var level = [
 	"............................................................",
 	"............................................................",
 	"............................................................",
@@ -17,8 +17,8 @@ function Terrain(stage, texX)
 	"........XXXXXX......XXX............X......................XX",
 	"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 	];
-	levelWidth = level[0].length * 40;
-	screenWidth = 1200;
+	var levelWidth = level[0].length * 40;
+	var screenWidth = 1200;
 
 	this.texX = texX;
 	this.obstaclesBBs = [];
@@ -27,12 +27,12 @@ function Terrain(stage, texX)
 
 	this.Load = function()
 	{
-		for(l in level)
+		for(var l in level)
 		{
-			line = level[l];
-			for(c in line)
+			var line = level[l];
+			for(var c in line)
 			{
-				char = line[c];
+				var char = line[c];
 				if(char == "X")
 				{
 					var block = new createjs.Bitmap(texX);
@@ -51,7 +51,7 @@ function Terrain(stage, texX)
 
 	this.TryMove = function(x)
 	{
-		remaining = 0;
+		var remaining = 0;
 		if(x > 0 && levelWidth - screenWidth < this.offsetX + x)
 		{
 			remaining = x;
@@ -64,9 +64,9 @@ function Terrain(stage, texX)
 			x = -this.offsetX;
 		}
 		
-		for(o in this.obstaclesBBs)
+		for(var o in this.obstaclesBBs)
 			this.obstaclesBBs[o].x -= x;
-		for(o in this.obstaclesSprites)
+		for(var o in this.obstaclesSprites)
 			this.obstaclesSprites[o].x -= x;
 		this.offsetX += x;
 		

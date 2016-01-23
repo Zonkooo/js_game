@@ -1,6 +1,6 @@
-EPSILON = 0.1; //size of buffer between player and obstacles
+var EPSILON = 0.1; //size of buffer between player and obstacles
 
-GetValidMove = function(bb, direction, obstacles)
+function GetValidMove(bb, direction, obstacles)
 {
 	//try x move
 	bb.width += Math.abs(direction.x);
@@ -23,13 +23,13 @@ GetValidMove = function(bb, direction, obstacles)
 	bb.height += Math.abs(direction.y);
 	if(direction.y < 0)
 		bb.y += direction.y;
-	for(b in obstacles)
+	for(var b in obstacles)
 	{
-		var block = obstacles[b];
-		var inter = bb.intersection(block);
+		block = obstacles[b];
+		inter = bb.intersection(block);
 		if(inter)
 		{
-			moveback = inter.height + EPSILON;
+			var moveback = inter.height + EPSILON;
 			if(direction.y < 0) moveback = -moveback;
 			direction.y -= moveback;
 			break;

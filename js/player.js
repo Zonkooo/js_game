@@ -61,24 +61,24 @@ function Player(initX, initY, bitmap)
 			this.debugBB.scaleY = rect.height;
 		}
 
-		var move = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
-		if((move.x > 0 && this.internal.x + move.x > 800) || (move.x < 0 && this.internal.x + move.x < 400))
+		var validatedMove = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
+		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > 800) || (validatedMove.x < 0 && this.internal.x + validatedMove.x < 400))
 		{
 			//move terrain instead of player
-			var remaining = objTerrain.TryMove(move.x);
+			var remaining = objTerrain.TryMove(validatedMove.x);
 			this.internal.x += remaining;
 		}
 		else
 		{
-			this.internal.x += move.x;
+			this.internal.x += validatedMove.x;
 		}
-		this.internal.y += move.y;
+		this.internal.y += validatedMove.y;
 
 		//update state
 		var prevState = this.state;
-		if(Math.abs(move.y) > EPSILON)
+		if(Math.abs(validatedMove.y) > EPSILON)
 			this.state = "jump";
-		else if(Math.abs(move.x) > EPSILON)
+		else if(Math.abs(validatedMove.x) > EPSILON)
 			this.state = "run";
 		else
 			this.state = "still";
@@ -86,7 +86,7 @@ function Player(initX, initY, bitmap)
 		if(this.state != prevState)
 			this.internal.gotoAndPlay(this.state);
 
-		if(Math.abs(move.y) < Math.abs(wantedY))
+		if(Math.abs(validatedMove.y) < Math.abs(wantedY))
 		{
 			if(this.verticalVelocity > 0 && !this.onGround)
 			{

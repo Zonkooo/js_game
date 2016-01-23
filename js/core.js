@@ -1,3 +1,4 @@
+/* global debug */
 debug = true;
 
 var isKeyPressed = [];
@@ -31,16 +32,16 @@ function startGame()
 
 function preloadAssets()
 {
-	imgPlayer.onload = preloadUpdate();
+	imgPlayer.onload = preloadUpdate;
 	imgPlayer.src = "media/player_anim.png";
 
-	imgBg.onload = preloadUpdate();
+	imgBg.onload = preloadUpdate;
 	imgBg.src = "media/bg.png";
 
-	imgBlock.onload = preloadUpdate();
+	imgBlock.onload = preloadUpdate;
 	imgBlock.src = "media/block.png";
 
-	imgDebug.onload = preloadUpdate();
+	imgDebug.onload = preloadUpdate;
 	imgDebug.src = "media/debug.png";
 
 	createjs.Sound.addEventListener("fileload", preloadUpdate);
