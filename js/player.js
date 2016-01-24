@@ -65,13 +65,21 @@ function Player(initX, initY, bitmap)
 		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > 800) || (validatedMove.x < 0 && this.internal.x + validatedMove.x < 400))
 		{
 			//move terrain instead of player
-			this.internal.x += objTerrain.tryMove(validatedMove.x);
+			this.internal.x += objTerrain.tryMoveX(validatedMove.x);
 		}
 		else
 		{
 			this.internal.x += validatedMove.x;
 		}
-		this.internal.y += validatedMove.y;
+		if((validatedMove.y > 0 && this.internal.y + validatedMove.y > 300) || (validatedMove.y < 0 && this.internal.y + validatedMove.y < 200))
+		{
+			//move terrain instead of player
+			this.internal.y += objTerrain.tryMoveY(validatedMove.y);
+		}
+		else
+		{
+			this.internal.y += validatedMove.y;
+		}
 
 		//update state
 		var prevState = this.state;
