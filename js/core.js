@@ -1,5 +1,4 @@
-/* global debug */
-debug = true;
+displayDebug = false;
 
 var isKeyPressed = [];
 
@@ -63,7 +62,7 @@ function launchGame()
 	stage.addChild(objBg);
 
 	objTerrain = new Terrain(stage, imgBlock);
-	objTerrain.Load();
+	objTerrain.load();
 
 	var spSheet = new createjs.SpriteSheet({
 			images: [imgPlayer],
@@ -101,7 +100,7 @@ function code(e)
 
 function update(event)
 {
-	objPlayer.Update(event);
+	objPlayer.update(event);
 
 	stage.update();
 }

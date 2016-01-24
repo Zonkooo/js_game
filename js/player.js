@@ -15,13 +15,13 @@ function Player(initX, initY, bitmap)
 
 	this.onGround = false;
 
-	if(debug)
+	if(displayDebug)
 	{
 		this.debugBB = new createjs.Bitmap(imgDebug);
 		stage.addChild(this.debugBB);
 	}
 
-	this.Update = function (event)
+	this.update = function (event)
 	{
 		var wantedX = 0;
 		var wantedY = 0;
@@ -52,7 +52,7 @@ function Player(initX, initY, bitmap)
 
 		var rect = new createjs.Rectangle(this.internal.x-19, this.internal.y, 40, 53);
 
-		if(debug)
+		if(displayDebug)
 		{
 			//debug bounding box is one frame off
 			this.debugBB.x = rect.x;
@@ -61,12 +61,11 @@ function Player(initX, initY, bitmap)
 			this.debugBB.scaleY = rect.height;
 		}
 
-		var validatedMove = GetValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
+		var validatedMove = getValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
 		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > 800) || (validatedMove.x < 0 && this.internal.x + validatedMove.x < 400))
 		{
 			//move terrain instead of player
-			var remaining = objTerrain.TryMove(validatedMove.x);
-			this.internal.x += remaining;
+			this.internal.x += objTerrain.tryMove(validatedMove.x);
 		}
 		else
 		{

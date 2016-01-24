@@ -1,21 +1,20 @@
 var EPSILON = 0.1; //size of buffer between player and obstacles
 
-function GetValidMove(bb, direction, obstacles)
+function getValidMove(bb, direction, obstacles)
 {
 	//try x move
 	bb.width += Math.abs(direction.x);
 	if(direction.x < 0)
 		bb.x += direction.x;
-	for(var b = 0; b < obstacles.length; b++)
+	for(var bX = 0; bX < obstacles.length; bX++)
 	{
-		var block = obstacles[b];
-		var inter = bb.intersection(block);
-		if(inter)
+		var interX = bb.intersection(obstacles[bX]);
+		if(interX)
 		{
-			moveback = inter.width + EPSILON;
-			if(direction.x < 0) moveback = -moveback;
-			direction.x -= moveback;
-			bb.x -= moveback;
+			var moveBackX = interX.width + EPSILON;
+			if(direction.x < 0) moveBackX = -moveBackX;
+			direction.x -= moveBackX;
+			bb.x -= moveBackX;
 			break;
 		}
 	}
@@ -23,15 +22,14 @@ function GetValidMove(bb, direction, obstacles)
 	bb.height += Math.abs(direction.y);
 	if(direction.y < 0)
 		bb.y += direction.y;
-	for(var b = 0; b < obstacles.length; b++)
+	for(var bY = 0; bY < obstacles.length; bY++)
 	{
-		block = obstacles[b];
-		inter = bb.intersection(block);
-		if(inter)
+		var interY = bb.intersection(obstacles[bY]);
+		if(interY)
 		{
-			var moveback = inter.height + EPSILON;
-			if(direction.y < 0) moveback = -moveback;
-			direction.y -= moveback;
+			var moveBackY = interY.height + EPSILON;
+			if(direction.y < 0) moveBackY = -moveBackY;
+			direction.y -= moveBackY;
 			break;
 		}
 	}
