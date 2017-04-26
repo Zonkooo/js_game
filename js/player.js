@@ -39,7 +39,7 @@ function Player(initX, initY, bitmap)
 			createjs.Sound.play("jump");
 		}
 
-		wantedY += this.verticalVelocity*deltaT;
+		wantedY += this.verticalVelocity*deltaT + this.gravity*deltaT*deltaT/2;
 
 		var move = 0;
 		if(isKeyPressed[37])
