@@ -4,15 +4,19 @@ function Player(initX, initY, bitmap)
 
 	this.state = "still";
 
-	this.speed = 6;
-	this.jumpingPower = 15;
-
 	this.internal = bitmap;
 	this.internal.x = initX;
 	this.internal.y = initY;
 
-	this.verticalVelocity = 0;
+	this.jumpHeight = 3.25 * 40; //40 is the size of a block
+	this.jumpLength = 4.2 * 40;
+	this.speed = 200; //in pixels per second
 
+	//deduce initial kick velocity and gravity from jump height and length
+	this.jumpV0 = 4*this.jumpHeight*this.speed/this.jumpLength;
+	this.gravity = 8*this.jumpHeight*this.speed*this.speed/(this.jumpLength*this.jumpLength);
+
+	this.verticalVelocity = 0;
 	this.onGround = false;
 
 	if(displayDebug)
@@ -25,13 +29,13 @@ function Player(initX, initY, bitmap)
 	{
 		var wantedX = 0;
 		var wantedY = 0;
-		var deltaT = event.delta/30; //usually approximately 1
-		this.verticalVelocity += gravity*deltaT;
+		var deltaT = event.delta/1000; //in seconds
+		this.verticalVelocity += this.gravity*deltaT;
 
 		if(this.onGround && isKeyPressed[38])
 		{
 			this.onGround = false;
-			this.verticalVelocity = -this.jumpingPower;
+			this.verticalVelocity = -this.jumpV0;
 			createjs.Sound.play("jump");
 		}
 

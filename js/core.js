@@ -15,8 +15,6 @@ var imgDebug = new Image();
 
 var stage;
 
-var gravity = 1;
-
 function startGame()
 {
 	stage = new createjs.Stage(document.getElementById("gameCanvas"));
