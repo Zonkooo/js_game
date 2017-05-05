@@ -20,7 +20,7 @@ function getValidMove(bb, direction, obstacles)
 			var inter = bb.intersection(obstacles[obs]);
 			if(inter)
 			{
-				var moveBack = inter[dimension.thickness] + EPSILON;
+				var moveBack = Math.abs(inter[dimension.coord] - (bb[dimension.coord] + bb[dimension.thickness])) + EPSILON;
 				if(direction[dimension.coord] < 0) moveBack = -moveBack;
 				direction[dimension.coord] -= moveBack;
 				bb[dimension.coord] -= moveBack;
