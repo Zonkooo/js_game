@@ -1,37 +1,31 @@
-var EPSILON = 0.1; //size of buffer between player and obstacles
+var EPSILON = 0.01; //size of buffer between player and obstacles
 
 function getValidMove(bb, direction, obstacles)
 {
-	//try x move
-	bb.width += Math.abs(direction.x);
-	if(direction.x < 0)
-		bb.x += direction.x;
-	for(var bX = 0; bX < obstacles.length; bX++)
-	{
-		var interX = bb.intersection(obstacles[bX]);
-		if(interX)
-		{
-			var moveBackX = interX.width + EPSILON;
-			if(direction.x < 0) moveBackX = -moveBackX;
-			direction.x -= moveBackX;
-			bb.x -= moveBackX;
-			break;
-		}
-	}
-	//try y move
-	bb.height += Math.abs(direction.y);
-	if(direction.y < 0)
-		bb.y += direction.y;
-	for(var bY = 0; bY < obstacles.length; bY++)
-	{
-		var interY = bb.intersection(obstacles[bY]);
-		if(interY)
-		{
-			var moveBackY = interY.height + EPSILON;
-			if(direction.y < 0) moveBackY = -moveBackY;
-			direction.y -= moveBackY;
-			break;
-		}
-	}
+	var horizontal = {coord: "x", thickness: "width"};
+	var vertical = {coord: "y", thickness: "height"};
+
+	validateMoveInOneDimension(horizontal);
+	validateMoveInOneDimension(vertical);
+
 	return direction;
+
+	function validateMoveInOneDimension(dimension)
+	{
+		bb[dimension.thickness] += Math.abs(direction[dimension.coord]);
+		if(direction[dimension.coord] < 0)
+			bb[dimension.coord] += direction[dimension.coord];
+		for(var obs = 0; obs < obstacles.length; obs++)
+		{
+			var inter = bb.intersection(obstacles[obs]);
+			if(inter)
+			{
+				var moveBack = inter[dimension.thickness] + EPSILON;
+				if(direction[dimension.coord] < 0) moveBack = -moveBack;
+				direction[dimension.coord] -= moveBack;
+				bb[dimension.coord] -= moveBack;
+				break;
+			}
+		}
+	}
 }
