@@ -15,6 +15,7 @@ function getValidMove(bb, direction, obstacles)
 		bb[dimension.thickness] += Math.abs(direction[dimension.coord]);
 		if(direction[dimension.coord] < 0)
 			bb[dimension.coord] += direction[dimension.coord];
+		var moveBackUsed = 0;
 		for(var obs = 0; obs < obstacles.length; obs++)
 		{
 			var inter = bb.intersection(obstacles[obs]);
@@ -25,10 +26,12 @@ function getValidMove(bb, direction, obstacles)
 					moveBack = inter[dimension.coord] + inter[dimension.thickness] - bb[dimension.coord] + EPSILON;
 				else
 					moveBack = inter[dimension.coord] - (bb[dimension.coord] + bb[dimension.thickness]) - EPSILON;
-				direction[dimension.coord] += moveBack;
-				bb[dimension.coord] += moveBack;
-				break;
+
+				if(Math.abs(moveBack) > Math.abs(moveBackUsed))
+					moveBackUsed = moveBack;
 			}
 		}
+		direction[dimension.coord] += moveBackUsed;
+		bb[dimension.coord] += moveBackUsed;
 	}
 }

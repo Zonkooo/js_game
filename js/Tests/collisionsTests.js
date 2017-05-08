@@ -68,6 +68,15 @@ QUnit.test("cannot cross obstacles that are less than one frame thick in negativ
     assert.equal(actual.y, wanted.y);
 });
 
+QUnit.test("if double intersection, closest one is used", function(assert) {
+    var boundingBox =  new createjs.Rectangle(0, 0, 10, 10);
+    var wanted = {x:20, y:0};
+    var obstacles = [new createjs.Rectangle(15, 0, 2, 10), new createjs.Rectangle(12, 0, 2, 10)];
+    var actual = getValidMove(boundingBox, wanted, obstacles);
+    closeEnough(assert, actual.x, 2);
+    assert.equal(actual.y, wanted.y);
+});
+
 function closeEnough(assert, actual, expected)
 {
     assert.ok(Math.abs(actual-expected) < 2*EPSILON, "expected " + expected + " +-" + 2*EPSILON + " got " + actual);
