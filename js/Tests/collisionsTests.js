@@ -59,6 +59,14 @@ QUnit.test("cannot cross obstacles that are less than one frame thick", function
     assert.equal(actual.y, wanted.y);
 });
 
+QUnit.test("cannot cross obstacles that are less than one frame thick in negative direction", function(assert) {
+    var boundingBox =  new createjs.Rectangle(0, 0, 10, 10);
+    var wanted = {x:-20, y:0};
+    var obstacles = [new createjs.Rectangle(-7, 0, 2, 10)];
+    var actual = getValidMove(boundingBox, wanted, obstacles);
+    closeEnough(assert, actual.x, -5);
+    assert.equal(actual.y, wanted.y);
+});
 
 function closeEnough(assert, actual, expected)
 {
