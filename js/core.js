@@ -57,7 +57,7 @@ function launchGame()
 	var objBg = new createjs.Bitmap(imgBg);
 	stage.addChild(objBg);
 
-	objTerrain = new Terrain();
+	objTerrain = new Terrain(level1);
 	objTerrain.load(stage, imgBlock);
 
 	var spSheet = new createjs.SpriteSheet({
