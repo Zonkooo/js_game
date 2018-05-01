@@ -1,7 +1,5 @@
 function Player(initX, initY, bitmap)
 {
-	var self = this; //to use in events
-
 	this.state = "still";
 
 	this.internal = bitmap;

@@ -33,5 +33,8 @@ function getValidMove(bb, direction, obstacles)
 		}
 		direction[dimension.coord] += moveBackUsed;
 		bb[dimension.coord] += moveBackUsed;
+
+		if(Math.abs(direction[dimension.coord]) < EPSILON)
+			direction[dimension.coord] = 0;
 	}
 }
