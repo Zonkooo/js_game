@@ -96,7 +96,7 @@ function code(e)
 
 function update(event)
 {
-	objPlayer.update(event);
+	objPlayer.update(event, objTerrain);
 
 	stage.update();
 }

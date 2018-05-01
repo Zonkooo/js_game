@@ -19,7 +19,7 @@ function Player(initX, initY, bitmap)
 	this.verticalVelocity = 0;
 	this.onGround = false;
 
-	this.update = function (event)
+	this.update = function (event, terrain)
 	{
 		var wantedX = 0;
 		var wantedY = 0;
@@ -50,11 +50,11 @@ function Player(initX, initY, bitmap)
 
 		var rect = new createjs.Rectangle(this.internal.x-19, this.internal.y, 40, 53);
 
-		var validatedMove = getValidMove(rect, {x:wantedX, y:wantedY}, objTerrain.obstaclesBBs);
+		var validatedMove = getValidMove(rect, {x:wantedX, y:wantedY}, terrain.obstaclesBBs);
 		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > 800) || (validatedMove.x < 0 && this.internal.x + validatedMove.x < 400))
 		{
 			//move terrain instead of player
-			this.internal.x += objTerrain.tryMoveX(validatedMove.x);
+			this.internal.x += terrain.tryMoveX(validatedMove.x);
 		}
 		else
 		{
@@ -63,7 +63,7 @@ function Player(initX, initY, bitmap)
 		if((validatedMove.y > 0 && this.internal.y + validatedMove.y > 300) || (validatedMove.y < 0 && this.internal.y + validatedMove.y < 200))
 		{
 			//move terrain instead of player
-			this.internal.y += objTerrain.tryMoveY(validatedMove.y);
+			this.internal.y += terrain.tryMoveY(validatedMove.y);
 		}
 		else
 		{
