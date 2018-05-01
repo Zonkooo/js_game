@@ -1,4 +1,4 @@
-function Terrain(stage, texX)
+function Terrain()
 {
 	var level = [
 	"............................................................",
@@ -36,7 +36,7 @@ function Terrain(stage, texX)
 	this.offsetX = 0;
 	this.offsetY = 0;
 
-	this.load = function()
+	this.load = function(stage, texX)
 	{
 		for(var l = 0; l < level.length; l++)
 		{
