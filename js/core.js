@@ -1,5 +1,3 @@
-displayDebug = false;
-
 var isKeyPressed = [];
 
 var preloadCount = 0;
