@@ -1,3 +1,4 @@
+QUnit.module("collisionsTests");
 
 QUnit.test("no collision if no obstacle", function(assert) {
     var boundingBox =  new createjs.Rectangle(0, 0, 10, 10);

@@ -5,6 +5,8 @@ function SpriteMock()
     this.gotoAndPlay = function(){}; //used in player
 }
 
+QUnit.module("playerTests");
+
 QUnit.test("player doesn't move if on terrain", function(assert) {
     var player = new Player(0, -53, new SpriteMock());
     var terrain = new Terrain(testLevel);
