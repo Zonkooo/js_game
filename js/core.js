@@ -62,7 +62,8 @@ function launchGame()
 
 	var spSheet = new createjs.SpriteSheet({
 			images: [imgPlayer],
-			frames: {height: 60, width: 54, regX: 27},
+			//regX in the middle of the sprite to allow turning left and right by just flipping scaleX
+			frames: {height: 60, width: 54, regX: 27, regY: 53},
 			animations: {
 				run: [0, 7, "run", 0.4] ,
 				jump: [8, 12, "jump", 0.4],

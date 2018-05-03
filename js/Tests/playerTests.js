@@ -8,18 +8,18 @@ function SpriteMock()
 QUnit.module("playerTests");
 
 QUnit.test("player doesn't move if on terrain", function(assert) {
-    var player = new Player(0, -53, new SpriteMock());
+    var player = new Player(0, 0, new SpriteMock());
     var terrain = new Terrain(testLevel);
     terrain.obstaclesBBs.push(new createjs.Rectangle(0, 0, 400, 40));
 
     player.update({delta: 100}, terrain);
 
     assert.equal(player.verticalVelocity, 0);
-    closeEnough(assert, player.internal.y, -53); //actually Y moves a bit because of epsilon buffer
+    closeEnough(assert, player.internal.y, 0); //actually Y moves a bit because of epsilon buffer
 });
 
 QUnit.test("test jump height", function(assert) {
-    var player = new Player(0, -53, new SpriteMock());
+    var player = new Player(0, 0, new SpriteMock());
     var expectedHeight = player.jumpHeight;
     var terrain = new Terrain(testLevel);
     terrain.obstaclesBBs.push(new createjs.Rectangle(0, 0, 400, 40));
@@ -31,15 +31,14 @@ QUnit.test("test jump height", function(assert) {
 
         if(Math.abs(player.verticalVelocity) < 10){
             var actual = player.internal.y;
-            var expected = -53 - expectedHeight;
+            var expected = -expectedHeight;
             assert.ok(Math.abs(actual-expected) < 1, "expected " + expected + " +-" + 1 + " got " + actual);
             break;
         }
     }
 });
-
 QUnit.test("test jump length", function(assert) {
-    var player = new Player(0, -53, new SpriteMock());
+    var player = new Player(0, 0, new SpriteMock());
     var expectedLength = player.jumpLength;
     var terrain = new Terrain(testLevel);
     terrain.obstaclesBBs.push(new createjs.Rectangle(0, 0, 400, 40));
@@ -60,9 +59,9 @@ QUnit.test("test jump length", function(assert) {
 });
 
 QUnit.test("movement stays consistent if the game lags", function(assert) {
-    var p1 = new Player(0, -53, new SpriteMock());
-    var p2 = new Player(0, -53, new SpriteMock());
-    var p3 = new Player(0, -53, new SpriteMock());
+    var p1 = new Player(0, 0, new SpriteMock());
+    var p2 = new Player(0, 0, new SpriteMock());
+    var p3 = new Player(0, 0, new SpriteMock());
     var terrain = new Terrain(testLevel);
     terrain.obstaclesBBs.push(new createjs.Rectangle(0, 0, 400, 40));
 
