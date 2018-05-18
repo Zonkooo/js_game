@@ -7,7 +7,7 @@ QUnit.test("no collision if no obstacle", function(assert) {
     assert.equal(actual, wanted);
 });
 
-QUnit.test("no collision if no obstacle far", function(assert) {
+QUnit.test("no collision if obstacle is far", function(assert) {
     var boundingBox =  new createjs.Rectangle(0, 0, 10, 10);
     var wanted = {x:1, y:1};
     var obstacles = [new createjs.Rectangle(100, 0, 10, 10)];
