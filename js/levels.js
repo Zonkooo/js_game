@@ -1,6 +1,10 @@
-var testLevel = ["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"];
+var testLevel = {
+    map:["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"]
+};
 
-var level1 = [
+var level1 = {
+    startPos: {x:50, y:-60},
+    map: [
     "............................................................",
     "............................................................",
     "..............X.............................................",
@@ -25,4 +29,4 @@ var level1 = [
     "........XXXXXX....................X.X......................X",
     "........XXXXXX......XXX............X......................XX",
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-];
+]};

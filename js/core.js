@@ -53,11 +53,12 @@ function preloadUpdate()
 function launchGame()
 {
 	stage.removeChildAt(0); //loading text
+	var level = level1;
 
 	var objBg = new createjs.Bitmap(imgBg);
 	stage.addChild(objBg);
 
-	objTerrain = new Terrain(level1);
+	objTerrain = new Terrain(level.map);
 	objTerrain.load(stage, imgBlock);
 
 	var spSheet = new createjs.SpriteSheet({
@@ -71,7 +72,7 @@ function launchGame()
 			}
 		});
 	var sprite = new createjs.Sprite(spSheet, "run");
-	objPlayer = new Player(50, -60, sprite);
+	objPlayer = new Player(level.startPos.x, level.startPos.y, sprite);
 	stage.addChild(objPlayer.internal);
 
 	createjs.Ticker.setFPS(30);
