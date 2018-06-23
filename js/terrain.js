@@ -1,8 +1,8 @@
 function Terrain(level)
 {
-	var levelWidth = level[0].length * 40;
+	var levelWidth;
+	var levelHeight;
 	var screenWidth = 1200;
-	var levelHeight = level.length * 40;
 	var screenHeight = 600;
 
 	this.obstaclesBBs = [];
@@ -12,6 +12,9 @@ function Terrain(level)
 
 	this.load = function(stage, texX)
 	{
+		levelWidth = level[0].length * texX.width;
+		levelHeight = level.length * texX.height;
+
 		for(var l = 0; l < level.length; l++)
 		{
 			var line = level[l];
@@ -21,16 +24,16 @@ function Terrain(level)
 				if(char == "X")
 				{
 					var block = new createjs.Bitmap(texX);
-					block.x = c*40;
-					block.y = l*40;
+					block.x = c*texX.width;
+					block.y = l*texX.height;
 					stage.addChild(block);
 					this.obstaclesSprites.push(block);
-					this.obstaclesBBs.push(new createjs.Rectangle(block.x, block.y, 40, 40));
+					this.obstaclesBBs.push(new createjs.Rectangle(block.x, block.y, texX.width, texX.height));
 				}
 			}
 			//add invisible blocks on each side to prevent character from falling
-			this.obstaclesBBs.push(new createjs.Rectangle(-40, l*40, 40, 40));
-			this.obstaclesBBs.push(new createjs.Rectangle(line.length*40, l*40, 40, 40));
+			this.obstaclesBBs.push(new createjs.Rectangle(-texX.width, l*texX.height, texX.width, texX.height));
+			this.obstaclesBBs.push(new createjs.Rectangle(line.length*texX.width, l*texX.height, texX.width, texX.height));
 		}
 	}
 
