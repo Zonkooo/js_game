@@ -24,7 +24,7 @@ function Player(initX, initY, bitmap)
 		var deltaT = event.delta/1000; //in seconds
 		this.verticalVelocity += this.gravity*deltaT;
 
-		if(this.onGround && isKeyPressed[38])
+		if(this.onGround && isKeyPressed["ArrowUp"])
 		{
 			this.onGround = false;
 			this.verticalVelocity = -this.jumpV0;
@@ -34,12 +34,12 @@ function Player(initX, initY, bitmap)
 		wantedY += this.verticalVelocity*deltaT + this.gravity*deltaT*deltaT/2;
 
 		var move = 0;
-		if(isKeyPressed[37])
+		if(isKeyPressed["ArrowLeft"])
 		{
 			move += -this.speed;
 			this.internal.scaleX = -Math.abs(this.internal.scaleX);
 		}
-		if(isKeyPressed[39])
+		if(isKeyPressed["ArrowRight"])
 		{
 			move += this.speed;
 			this.internal.scaleX = Math.abs(this.internal.scaleX);

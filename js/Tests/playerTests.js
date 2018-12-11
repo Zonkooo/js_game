@@ -24,7 +24,7 @@ QUnit.test("test jump height", function(assert) {
     var terrain = new Terrain(testLevel);
     terrain.obstaclesBBs.push(new createjs.Rectangle(0, 0, 400, 40));
     player.update({delta: 100}, terrain); //let player settle on ground
-    isKeyPressed[38] = true; //press jump key
+    isKeyPressed["ArrowUp"] = true; //press jump key
 
     for(var i = 0; i < 100; i++) {
         player.update({delta: 25}, terrain);
@@ -43,8 +43,8 @@ QUnit.test("test jump length", function(assert) {
     var terrain = new Terrain(testLevel);
     terrain.obstaclesBBs.push(new createjs.Rectangle(0, 0, 400, 40));
     player.update({delta: 100}, terrain); //let player settle on ground
-    isKeyPressed[38] = true; //press jump key
-    isKeyPressed[39] = true; //press forward key
+    isKeyPressed["ArrowUp"] = true; //press jump key
+    isKeyPressed["ArrowRight"] = true; //press forward key
 
     for(var i = 0; i < 100; i++) {
         player.update({delta: 25}, terrain);
@@ -68,8 +68,8 @@ QUnit.test("movement stays consistent if the game lags", function(assert) {
     p1.update({delta: 100}, terrain); //let all players settle on ground
     p2.update({delta: 100}, terrain); //let all players settle on ground
     p3.update({delta: 100}, terrain); //let all players settle on ground
-    isKeyPressed[38] = true; //press jump key
-    isKeyPressed[39] = true; //press forward key
+    isKeyPressed["ArrowUp"] = true; //press jump key
+    isKeyPressed["ArrowRight"] = true; //press forward key
 
     p1.update({delta: 500}, terrain); //p1 is running at 2fps
     for(var i = 0; i < 5; i++)

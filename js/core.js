@@ -82,7 +82,7 @@ function launchGame()
 	document.onkeydown = function(e){
 		var key = code(e);
 		isKeyPressed[key] = true;
-//		alert(key);
+		//alert(key);
 	};
 	document.onkeyup = function(e){
 		var key = code(e);
@@ -93,7 +93,7 @@ function launchGame()
 function code(e)
 {
 	e = e || window.event;
-	return(e.keyCode || e.which);
+	return e.key;
 }
 
 function update(event)
