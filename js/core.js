@@ -34,7 +34,7 @@ function preloadAssets()
 	imgBg.src = "media/bg.png";
 
 	imgBlock.onload = preloadUpdate;
-	imgBlock.src = "media/block.png";
+	imgBlock.src = "media/crate.png";
 
 	imgDebug.onload = preloadUpdate;
 	imgDebug.src = "media/debug.png";
@@ -75,7 +75,7 @@ function launchGame()
 	objPlayer = new Player(level.startPos.x, level.startPos.y, sprite);
 	stage.addChild(objPlayer.internal);
 
-	createjs.Ticker.setFPS(30);
+	createjs.Ticker.framerate = 30;
 	createjs.Ticker.addEventListener("tick", update);
 
 	//manage keyboard state

@@ -46,7 +46,7 @@ function Player(initX, initY, bitmap)
 		}
 		wantedX += move*deltaT;
 
-		var rect = new createjs.Rectangle(this.internal.x-19, this.internal.y-53, 40, 53);
+		var rect = new createjs.Rectangle(this.internal.x-17, this.internal.y-53, 34, 53);
 
 		var validatedMove = getValidMove(rect, {x:wantedX, y:wantedY}, terrain.obstaclesBBs);
 		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > 800) || (validatedMove.x < 0 && this.internal.x + validatedMove.x < 400))
