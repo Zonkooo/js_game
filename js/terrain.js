@@ -21,7 +21,7 @@ function Terrain(level)
 			for(var c = 0; c < line.length; c++)
 			{
 				var char = line[c];
-				if(char == "X")
+				if(char === "X")
 				{
 					var block = new createjs.Bitmap(texX);
 					block.x = c*texX.width;
@@ -35,7 +35,7 @@ function Terrain(level)
 			this.obstaclesBBs.push(new createjs.Rectangle(-texX.width, l*texX.height, texX.width, texX.height));
 			this.obstaclesBBs.push(new createjs.Rectangle(line.length*texX.width, l*texX.height, texX.width, texX.height));
 		}
-	}
+	};
 
 	//will move the terrain by x, except if we reach a boundary,
 	//in which case it returns by how much the character should move
@@ -61,7 +61,7 @@ function Terrain(level)
 		this.offsetX += x;
 		
 		return remaining;
-	}
+	};
 
 	this.tryMoveY = function(y)
 	{

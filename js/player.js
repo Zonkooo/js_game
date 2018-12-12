@@ -78,8 +78,8 @@ function Player(initX, initY, bitmap)
 			this.state = "run";
 		else
 			this.state = "still";
-		this.internal.regY = this.state == "still" ? 5 : 0; //oh boy
-		if(this.state != prevState)
+		this.internal.regY = this.state === "still" ? 5 : 0; //oh boy
+		if(this.state !== prevState)
 			this.internal.gotoAndPlay(this.state);
 
 		if(Math.abs(validatedMove.y) < Math.abs(wantedY))

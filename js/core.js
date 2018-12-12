@@ -19,7 +19,7 @@ var viewBuffer = 0.3;
 
 function startGame()
 {
-	stage = new createjs.Stage(document.getElementById("gameCanvas"));
+	stage = new createjs.Stage("gameCanvas");
 	var text = new createjs.Text("Loading...");
 	text.x = stage.canvas.width/2; text.y = stage.canvas.height/2;
 	text.textAlign = "center"; text.textBaseline = "middle";
@@ -50,7 +50,7 @@ function preloadAssets()
 function preloadUpdate()
 {
 	preloadCount++;
-	if(preloadCount == preloadTotal)
+	if(preloadCount === preloadTotal)
 		launchGame();
 }
 
