@@ -13,11 +13,15 @@ var imgDebug = new Image();
 
 var stage;
 
+//percentage of the screen we try to keep around the player (if it enters it we move the background)
+//0.5 means the player is always in the center
+var viewBuffer = 0.3;
+
 function startGame()
 {
 	stage = new createjs.Stage(document.getElementById("gameCanvas"));
 	var text = new createjs.Text("Loading...");
-	text.x = 600; text.y = 300;
+	text.x = stage.canvas.width/2; text.y = stage.canvas.height/2;
 	text.textAlign = "center"; text.textBaseline = "middle";
 	stage.addChild(text);
 	stage.update();

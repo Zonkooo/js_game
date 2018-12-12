@@ -2,8 +2,8 @@ function Terrain(level)
 {
 	var levelWidth;
 	var levelHeight;
-	var screenWidth = 1200;
-	var screenHeight = 600;
+	var screenWidth = stage.canvas.width;
+	var screenHeight = stage.canvas.height;
 
 	this.obstaclesBBs = [];
 	this.obstaclesSprites = [];
@@ -37,6 +37,8 @@ function Terrain(level)
 		}
 	}
 
+	//will move the terrain by x, except if we reach a boundary,
+	//in which case it returns by how much the character should move
 	this.tryMoveX = function(x)
 	{
 		var remaining = 0;
