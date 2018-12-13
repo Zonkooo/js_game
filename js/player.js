@@ -6,8 +6,8 @@ function Player(initX, initY, bitmap)
 	this.internal.x = initX;
 	this.internal.y = initY;
 
-	this.jumpHeight = 3.25 * 40; //40 is the size of a block
-	this.jumpLength = 4.2 * 40;
+	this.jumpHeight = 3.25 * BLOCK_SIZE;
+	this.jumpLength = 4.2 * BLOCK_SIZE;
 	this.speed = 200; //in pixels per second
 
 	//deduce initial kick velocity and gravity from jump height and length

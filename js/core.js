@@ -5,6 +5,7 @@ var preloadTotal = 5;
 
 var objPlayer;
 var objTerrain;
+var BLOCK_SIZE;
 
 var imgPlayer = new Image();
 var imgBg = new Image();
@@ -62,6 +63,7 @@ function launchGame()
 	var objBg = new createjs.Bitmap(imgBg);
 	stage.addChild(objBg);
 
+	BLOCK_SIZE = imgBlock.width;
 	objTerrain = new Terrain(level.map);
 	objTerrain.load(stage, imgBlock);
 
