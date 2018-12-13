@@ -33,7 +33,7 @@ function startGame()
 function preloadAssets()
 {
 	imgPlayer.onload = preloadUpdate;
-	imgPlayer.src = "media/player_anim.png";
+	imgPlayer.src = "media/junglechar.png";
 
 	imgBg.onload = preloadUpdate;
 	imgBg.src = "media/bg.png";
@@ -70,12 +70,13 @@ function launchGame()
 	var spSheet = new createjs.SpriteSheet({
 			images: [imgPlayer],
 			//regX in the middle of the sprite to allow turning left and right by just flipping scaleX
-			frames: {height: 60, width: 54, regX: 27, regY: 53},
+			frames: {height: 70, width: 42, regX: 21, regY: 70},
 			animations: {
 				run: [0, 7, "run", 0.4] ,
-				jump: [8, 12, "jump", 0.4],
-				still: [16, 23, "still", 0.4]
-			}
+				jumpup: 10,
+				jumpdown: 9,
+				still: [12, 23, "still", 0.4]
+			},
 		});
 	var sprite = new createjs.Sprite(spSheet, "run");
 	objPlayer = new Player(level.startPos.x, level.startPos.y, sprite);

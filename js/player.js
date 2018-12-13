@@ -46,9 +46,9 @@ function Player(initX, initY, bitmap)
 		}
 		wantedX += move*deltaT;
 
-		var rect = new createjs.Rectangle(this.internal.x-17, this.internal.y-53, 34, 53);
+		var bBox = new createjs.Rectangle(this.internal.x-17, this.internal.y-53, 34, 53);
 
-		var validatedMove = getValidMove(rect, {x:wantedX, y:wantedY}, terrain.obstaclesBBs);
+		var validatedMove = getValidMove(bBox, {x:wantedX, y:wantedY}, terrain.obstaclesBBs);
 		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > stage.canvas.width*(1-viewBuffer))
 			|| (validatedMove.x < 0 && this.internal.x + validatedMove.x < stage.canvas.width*viewBuffer))
 		{
@@ -72,13 +72,14 @@ function Player(initX, initY, bitmap)
 
 		//update state
 		var prevState = this.state;
-		if(Math.abs(validatedMove.y) > EPSILON)
-			this.state = "jump";
+		if(validatedMove.y > EPSILON)
+			this.state = "jumpup";
+		else if(validatedMove.y < -EPSILON)
+			this.state = "jumpdown";
 		else if(Math.abs(validatedMove.x) > EPSILON)
 			this.state = "run";
 		else
 			this.state = "still";
-		this.internal.regY = this.state === "still" ? 5 : 0; //oh boy
 		if(this.state !== prevState)
 			this.internal.gotoAndPlay(this.state);
 
