@@ -48,6 +48,9 @@ function Player(initX, initY, bitmap)
 
 		var bBox = new createjs.Rectangle(this.internal.x-17, this.internal.y-53, 34, 53);
 
+		//always round moves otherwise sprites may appear blurry
+		wantedX = Math.round(wantedX);
+		wantedY = Math.round(wantedY);
 		var validatedMove = getValidMove(bBox, {x:wantedX, y:wantedY}, terrain.obstaclesBBs);
 		if((validatedMove.x > 0 && this.internal.x + validatedMove.x > stage.canvas.width*(1-viewBuffer))
 			|| (validatedMove.x < 0 && this.internal.x + validatedMove.x < stage.canvas.width*viewBuffer))
