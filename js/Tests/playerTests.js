@@ -7,6 +7,11 @@ function SpriteMock()
 
 QUnit.module("playerTests");
 
+//define some constants that are in core.js and needed by player
+var BLOCK_SIZE = 32;
+var stage = {canvas:{width:1000, height:1000}};
+var viewBuffer = 0;
+
 QUnit.test("player doesn't move if on terrain", function(assert) {
     var player = new Player(0, 0, new SpriteMock());
     var terrain = new Terrain(testLevel);
@@ -29,10 +34,10 @@ QUnit.test("test jump height", function(assert) {
     for(var i = 0; i < 100; i++) {
         player.update({delta: 25}, terrain);
 
-        if(Math.abs(player.verticalVelocity) < 10){
+        if(Math.abs(player.verticalVelocity) < 30){
             var actual = player.internal.y;
             var expected = -expectedHeight;
-            assert.ok(Math.abs(actual-expected) < 1, "expected " + expected + " +-" + 1 + " got " + actual);
+            assert.ok(Math.abs(actual-expected) < 1, "expected " + expected + " +-" + 1 + " got " + actual + " at tstep " + i);
             break;
         }
     }

@@ -1,16 +1,13 @@
 var isKeyPressed = [];
 
 var preloadCount = 0;
-var preloadTotal = 5;
+var preloadTotal;
 
 var objPlayer;
 var objTerrain;
 var BLOCK_SIZE;
 
-var imgPlayer = new Image();
-var imgBg = new Image();
-var imgBlock = new Image();
-var imgDebug = new Image();
+var assets = [];
 
 var stage;
 
@@ -32,17 +29,19 @@ function startGame()
 
 function preloadAssets()
 {
-	imgPlayer.onload = preloadUpdate;
-	imgPlayer.src = "media/junglechar.png";
-
-	imgBg.onload = preloadUpdate;
-	imgBg.src = "media/bg.png";
-
-	imgBlock.onload = preloadUpdate;
-	imgBlock.src = "media/crate.png";
-
-	imgDebug.onload = preloadUpdate;
-	imgDebug.src = "media/debug.png";
+	var images = [
+		"junglechar",
+		"bg",
+		"crate",
+		"debug",
+	];
+	preloadTotal = images.length + 1; //+1 for the sound
+	for(var f of images){
+		var img = new Image();
+		img.onload = preloadUpdate;
+		img.src = "media/" + f + ".png";
+		assets[f] = img;
+	}
 
 	createjs.Sound.addEventListener("fileload", preloadUpdate);
 	createjs.Sound.registerSound("media/receive.wav", "jump", 4);
@@ -60,15 +59,15 @@ function launchGame()
 	stage.removeChildAt(0); //loading text
 	var level = level1;
 
-	var objBg = new createjs.Bitmap(imgBg);
+	var objBg = new createjs.Bitmap(assets["bg"]);
 	stage.addChild(objBg);
 
-	BLOCK_SIZE = imgBlock.width;
+	BLOCK_SIZE = assets["crate"].width;
 	objTerrain = new Terrain(level.map);
-	objTerrain.load(stage, imgBlock);
+	objTerrain.load(stage, assets["crate"]);
 
 	var spSheet = new createjs.SpriteSheet({
-			images: [imgPlayer],
+			images: [assets["junglechar"]], //art from https://jesse-m.itch.io/jungle-pack
 			//regX in the middle of the sprite to allow turning left and right by just flipping scaleX
 			frames: {height: 70, width: 42, regX: 21, regY: 70},
 			animations: {
